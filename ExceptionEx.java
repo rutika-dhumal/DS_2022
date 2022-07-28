@@ -12,10 +12,19 @@ class ExceptionEx {
     }
 }
 
+// checked exception --- compileTime
 class notRegisteredException extends Exception{
     notRegisteredException (String m){
       super(m);
     }
+}
+
+// unchecked exception  --- runtime
+class defaulterStudentException extends RuntimeException{
+	public defaulterStudentException(String m) {
+		super(m);
+		// TODO Auto-generated constructor stub
+	}
 }
 class Student {
     boolean registered;
@@ -32,11 +41,18 @@ class Student {
             throw nre;
         } 
         attendance () ;
-        assignments ();
+//        assignments ();
     }
     
     void attendance (){
-        System.out.println("attendance is updated");
+        double attendanceCount=Math.random();
+    	System.out.println("attendance is updated");
+        
+        if(attendanceCount <75) {
+        	defaulterStudentException defaultStudEx = new defaulterStudentException("attendance is less than 75");
+        	throw defaultStudEx;
+        }
+        assignments();
     }
     
     void assignments (){
